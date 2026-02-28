@@ -1,4 +1,5 @@
 return {
+	 --{ 'stevearc/dressing.nvim', event = 'VeryLazy', config = true },
 
 	-- Highlight todo, notes, etc in comments
 	{ 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
