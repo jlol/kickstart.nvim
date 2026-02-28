@@ -1,5 +1,6 @@
   -- NOTE: Plugins can be added via a link or github org/name. To run setup automatically, use `opts = {}`
-  { 'NMAC427/guess-indent.nvim', opts = {} },
+return { 
+	{ 'NMAC427/guess-indent.nvim', opts = {} },
 
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
@@ -67,3 +68,6 @@
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
+
+
+}

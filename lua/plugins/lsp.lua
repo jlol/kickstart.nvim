@@ -1,5 +1,5 @@
 -- LSP Plugins
-{
+return {
 	-- Main LSP Configuration
 	'neovim/nvim-lspconfig',
 	dependencies = {
@@ -180,4 +180,4 @@
 		})
 		vim.lsp.enable 'lua_ls'
 	end,
-},
+}
