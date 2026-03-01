@@ -32,29 +32,27 @@ return {
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
-        -- Rename the variable under your cursor.
-        --  Most Language Servers support renaming across files, etc.
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+        map('gf', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map('gk', require('telescope.builtin').lsp_implementations, '[G]oto [I]implementation')
+        map('gl', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
         map('gr', vim.lsp.buf.rename, '[R]e[n]ame')
+        map('za', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
-        -- Execute a code action, usually your cursor needs to be on top of an error
-        -- or a suggestion from your LSP for this to activate.
         map('<leader>la', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
-
-        -- WARN: This is not Goto Definition, this is Goto Declaration.
-        --  For example, in C this would take you to the header.
-        map('gf', vim.lsp.buf.definition, '[G]oto [D]efinition')
-        map('gk', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-        map('za', vim.lsp.buf.references, '[R]eferences')
-
-        map('<leader>lh', '<cmd>ClangdSwitchSourceHeader<cr>', 'Switch [C] Header/Source')
-        map('<leader>ls', '<cmd>ClangdSwitchSourceHeader<cr>', 'Switch [C] Header/Source')
+        map('<leader>ld', vim.lsp.buf.hover, 'Hover [D]ocumentation')
+        map('<leader>lf', function() vim.lsp.buf.format { async = true } end, '[F]ormat buffer')
+        if client and client.name == 'clangd' then map('<leader>lh', '<cmd>ClangdSwitchSourceHeader<cr>', 'Switch [H]eader/Source') end
+        map('<leader>ls', vim.lsp.buf.signature_help, '[S]ignature Help')
+        map('<leader>lwd', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [D]ynamic Symbols')
+        map('<leader>lws', require('telescope.builtin').lsp_workspace_symbols, '[W]orkspace [S]ymbols')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed
         --
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client:supports_method('textDocument/documentHighlight', event.buf) then
           local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
