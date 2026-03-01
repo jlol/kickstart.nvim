@@ -1,6 +1,6 @@
-require('core/options')
-require('core/keymaps')
-require('core/autocmds')
+require 'core/options'
+require 'core/keymaps'
+require 'core/autocmds'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -26,7 +26,7 @@ rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup({--'plugins', {
+require('lazy').setup({ --'plugins', {
   { import = 'plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`

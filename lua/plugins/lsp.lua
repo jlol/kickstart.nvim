@@ -34,17 +34,20 @@ return {
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+        map('gr', vim.lsp.buf.rename, '[R]e[n]ame')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
-        map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+        map('<leader>la', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
 
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
-        map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map('gf', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        map('gk', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map('za', vim.lsp.buf.references, '[R]eferences')
 
-        map('<leader>ch', '<cmd>ClangdSwitchSourceHeader<cr>', 'Switch [C] Header/Source')
+        map('<leader>lh', '<cmd>ClangdSwitchSourceHeader<cr>', 'Switch [C] Header/Source')
+        map('<leader>ls', '<cmd>ClangdSwitchSourceHeader<cr>', 'Switch [C] Header/Source')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
