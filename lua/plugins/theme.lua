@@ -3,6 +3,7 @@ return { -- You can easily change to a different colorscheme.
 	-- change the command in the config to whatever the name of that colorscheme is.
 	--
 	-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+	{
 	  'catppuccin/nvim',
   main = 'catppuccin',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
@@ -47,9 +48,12 @@ return { -- You can easily change to a different colorscheme.
         dap = {
           enabled = true,
         },
+        dap_ui = true,
+        diffview = true,
         fidget = true,
+        flash = true,
         gitsigns = true,
-        leap = true,
+        harpoon = true,
         lsp_trouble = true,
         telescope = true,
         treesitter = true,
@@ -115,5 +119,13 @@ return { -- You can easily change to a different colorscheme.
 
     vim.cmd.colorscheme 'catppuccin'
   end,
+	},
+
+	-- Alternative themes (try with :colorscheme <name>)
+	{ 'rose-pine/neovim', name = 'rose-pine', lazy = true, opts = { variant = 'moon' } },
+	{ 'rebelot/kanagawa.nvim', lazy = true, opts = { theme = 'wave' } },
+	{ 'sainnhe/gruvbox-material', lazy = true },
+	{ 'neanias/everforest-nvim', lazy = true, opts = { background = 'medium' } },
+	{ 'folke/tokyonight.nvim', lazy = true, opts = { style = 'storm' } },
 }
 
