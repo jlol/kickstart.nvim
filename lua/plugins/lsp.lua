@@ -34,19 +34,27 @@ return {
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-        map('gf', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-        map('gk', require('telescope.builtin').lsp_implementations, '[G]oto [I]implementation')
-        map('gl', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-        map('gr', vim.lsp.buf.rename, '[R]e[n]ame')
-        map('za', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+        -- Navigation
+        map('gf', vim.lsp.buf.declaration, '[G]oto Declaration')
+        map('gl', require('telescope.builtin').lsp_definitions, '[G]oto Definition')
+        map('gk', require('telescope.builtin').lsp_implementations, '[G]oto Implementation')
+        map('gy', require('telescope.builtin').lsp_type_definitions, '[G]oto T[y]pe Definition')
+        map('za', require('telescope.builtin').lsp_references, '[G]oto References')
 
-        map('<leader>la', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+        -- Symbols & calls
+        map('<leader>lo', require('telescope.builtin').lsp_document_symbols, 'Document Symbols ([O]utline)')
+        map('<leader>lwd', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [D]ynamic Symbols')
+        map('<leader>lws', require('telescope.builtin').lsp_workspace_symbols, '[W]orkspace [S]ymbols')
+        map('<leader>li', vim.lsp.buf.incoming_calls, '[I]ncoming Calls')
+        map('<leader>lc', vim.lsp.buf.outgoing_calls, 'Outgoing [C]alls')
+
+        -- Actions
+        map('gr', vim.lsp.buf.rename, '[R]ename')
+        map('<leader>la', vim.lsp.buf.code_action, 'Code [A]ction', { 'n', 'x' })
         map('<leader>ld', vim.lsp.buf.hover, 'Hover [D]ocumentation')
         map('<leader>lf', function() vim.lsp.buf.format { async = true } end, '[F]ormat buffer')
         if client and client.name == 'clangd' then map('<leader>lh', '<cmd>ClangdSwitchSourceHeader<cr>', 'Switch [H]eader/Source') end
         map('<leader>ls', vim.lsp.buf.signature_help, '[S]ignature Help')
-        map('<leader>lwd', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [D]ynamic Symbols')
-        map('<leader>lws', require('telescope.builtin').lsp_workspace_symbols, '[W]orkspace [S]ymbols')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -138,6 +146,7 @@ return {
       'lua-language-server', -- Lua Language server
       'stylua', -- Used to format Lua code
       'clangd',
+      'clang-format', -- C/C++ formatter
       -- You can add other tools here that you want Mason to install
     })
 

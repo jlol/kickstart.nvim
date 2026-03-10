@@ -61,7 +61,8 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+        'netcoredbg', -- C#/.NET debugger (used for Unity)
+        'codelldb', -- C/C++/Rust debugger
       },
     }
 
@@ -102,5 +103,29 @@ return {
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+    -- C#/Unity debugging with netcoredbg
+    dap.adapters.coreclr = {
+      type = 'executable',
+      command = vim.fn.exepath 'netcoredbg',
+      args = { '--interpreter=vscode' },
+    }
+
+    dap.configurations.cs = {
+      {
+        type = 'coreclr',
+        name = 'Attach to Unity',
+        request = 'attach',
+        processId = require('dap.utils').pick_process,
+      },
+      {
+        type = 'coreclr',
+        name = 'Launch .NET Project',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        end,
+      },
+    }
   end,
 }

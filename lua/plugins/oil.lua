@@ -33,6 +33,23 @@ return {
       view_options = {
         show_hidden = false,
         natural_order = true,
+        is_hidden_file = function(name)
+          if vim.startswith(name, '.') then return true end
+          local hidden_patterns = {
+            '%.meta$', '%.dll$', '%.exe$', '%.pdb$', '%.o$', '%.so$', '%.a$', '%.class$', '%.cache$',
+          }
+          for _, pat in ipairs(hidden_patterns) do
+            if name:match(pat) then return true end
+          end
+          local hidden_dirs = {
+            'Library', 'Temp', 'Logs', 'UserSettings', 'MemoryCaptures', 'Recordings',
+            'bin', 'obj', 'Build', 'Builds', 'node_modules',
+          }
+          for _, dir in ipairs(hidden_dirs) do
+            if name == dir then return true end
+          end
+          return false
+        end,
         sort = {
           { "type", "asc" },
           { "name", "asc" },
