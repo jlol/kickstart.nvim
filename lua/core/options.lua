@@ -87,3 +87,14 @@ vim.o.confirm = true
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- Force 4-space indentation for C/C++ regardless of LSP
+vim.api.nvim_create_autocmd('FileType', {
+  -- pattern = { "c", "cpp", "objc", "objcpp" },
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.expandtab = true
+  end,
+})

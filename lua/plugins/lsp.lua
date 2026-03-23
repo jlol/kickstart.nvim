@@ -112,7 +112,9 @@ return {
           '--header-insertion=iwyu',
           '--completion-style=detailed',
           '--function-arg-placeholders',
-          '--fallback-style=llvm',
+          -- '--fallback-style=llvm',
+          '--fallback-style=none',
+          -- '--fallback-style={BasedOnStyle: LLVM, IndentWidth: 4, TabWidth: 4}',
         },
         init_options = {
           usePlaceholders = true,
@@ -129,6 +131,11 @@ return {
           'Makefile',
           'CMakeLists.txt',
         },
+        on_attach = function(client, bufnr)
+          -- Disable clangd formatting
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
       },
       -- pyright = {},
       -- rust_analyzer = {},
@@ -146,7 +153,7 @@ return {
       'lua-language-server', -- Lua Language server
       'stylua', -- Used to format Lua code
       'clangd',
-      'clang-format', -- C/C++ formatter
+      -- 'clang-format', -- C/C++ formatter
       -- You can add other tools here that you want Mason to install
     })
 
