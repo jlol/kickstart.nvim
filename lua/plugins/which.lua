@@ -27,6 +27,7 @@ return {
         { '<leader>g', group = '[G]it' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>l', group = '[L]sp', mode = { 'n', 'v' } },
+        { '<leader>p', group = 'Co[P]ilot' },
         { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>x', group = 'Trouble' },

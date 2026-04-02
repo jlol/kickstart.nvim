@@ -201,6 +201,20 @@
 | `<C-e>` | Hide menu |
 | `<C-k>` | Toggle signature help |
 
+### Copilot (`<leader>p`)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>pe` | n | Enable Copilot |
+| `<leader>pd` | n | Disable Copilot |
+| `<leader>pp` | n | Open suggestions panel |
+| `<leader>ps` | n | Show Copilot status |
+| `<M-l>` | i | Accept inline suggestion |
+| `<M-]>` | i | Next suggestion |
+| `<M-[>` | i | Previous suggestion |
+| `<M-\>` | i | Trigger suggestion manually |
+| `<C-]>` | i | Dismiss suggestion |
+
 ### Misc
 
 | Key | Mode | Description |
