@@ -126,6 +126,19 @@ return { -- You can easily change to a different colorscheme.
 	{ 'rebelot/kanagawa.nvim', lazy = true, opts = { theme = 'wave' } },
 	{ 'sainnhe/gruvbox-material', lazy = true },
 	{ 'neanias/everforest-nvim', lazy = true, opts = { background = 'medium' } },
+	-- Tokyo Night variants: tokyonight-storm, tokyonight-night, tokyonight-moon, tokyonight-day
 	{ 'folke/tokyonight.nvim', lazy = true, opts = { style = 'storm' } },
+	{ 'shaunsingh/nord.nvim', lazy = true },
+	{ 'tyrannicaltoucan/vim-quantum', lazy = true },
+	{ 'KeitaNakamura/neodark.vim', lazy = true },
+	-- Nord-like but more colorful
+	-- nordfox, terafox, duskfox, dawnfox, dayfox, carbonfox variants available
+	{ 'EdenEast/nightfox.nvim', lazy = true },
+	{ 'bluz71/vim-moonfly-colors', name = 'moonfly', lazy = true },
+	{ 'bluz71/vim-nightfly-colors', name = 'nightfly', lazy = true },
+	{ 'nyoom-engineering/oxocarbon.nvim', lazy = true },
+	-- :colorscheme ayu-mirage / ayu-dark / ayu-light
+	{ 'Shatur/neovim-ayu', lazy = true },
+	{ 'savq/melange-nvim', lazy = true },
 }
 

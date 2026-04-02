@@ -50,7 +50,34 @@ return {
 				callback = function() vim.treesitter.start() end,
 			})
 		end,
-	}
+	},
+
+	{ -- Better code folding powered by LSP/Treesitter
+		'kevinhwang91/nvim-ufo',
+		dependencies = { 'kevinhwang91/promise-async' },
+		event = 'BufReadPost',
+		opts = {
+			provider_selector = function(_, filetype, _)
+				local lsp_ft = { 'c', 'cpp', 'cs', 'lua', 'rust', 'python', 'go' }
+				if vim.tbl_contains(lsp_ft, filetype) then
+					return { 'lsp', 'treesitter' }
+				end
+				return { 'treesitter', 'indent' }
+			end,
+		},
+		init = function()
+			vim.o.foldcolumn = '1'
+			vim.o.foldlevel = 99
+			vim.o.foldlevelstart = 99
+			vim.o.foldenable = true
+			vim.keymap.set('n', 'zR', require('ufo').openAllFolds,  { desc = 'Open all folds' })
+			vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = 'Close all folds' })
+			vim.keymap.set('n', 'zK', function()
+				local winid = require('ufo').peekFoldedLinesUnderCursor()
+				if not winid then vim.lsp.buf.hover() end
+			end, { desc = 'Peek fold / hover' })
+		end,
+	},
 
 }
 
