@@ -15,5 +15,12 @@ return {
     vim.keymap.set('n', '<leader>pd', '<cmd>Copilot disable<CR>', { desc = 'Copilot: [D]isable' })
     vim.keymap.set('n', '<leader>pp', '<cmd>Copilot panel<CR>', { desc = 'Copilot: Open [P]anel' })
     vim.keymap.set('n', '<leader>ps', '<cmd>Copilot status<CR>', { desc = 'Copilot: [S]tatus' })
+
+	vim.lsp.config["GitHub Copilot"] = {
+		default_config = {
+			-- dummy fields; server will be started by the plugin if needed
+			name = "GitHub Copilot",
+		},
+	}
   end,
 }
