@@ -29,6 +29,7 @@ return {
         { '<leader>l', group = '[L]sp', mode = { 'n', 'v' } },
         { '<leader>p', group = 'Co[P]ilot' },
         { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
+        { '<leader>S', group = '[S]ession' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>x', group = 'Trouble' },
       },
